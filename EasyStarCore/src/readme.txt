@@ -1,0 +1,13 @@
+更新说明
+  v1.0.0.3
+   1.修改了连接池不能重新连接的错误
+   2.重新调整了数据配置文件
+   3.放弃了DBCP，使用druid-1.1.9
+   4.Tools类增加了1个方法：getClassPath，获取classes目录或指定的子目录
+   5.DbConnection类增加了1个方法，close，可以分别关闭connection,resultset,statment
+  v1.0.0.2
+   1.去掉了初始化连接
+   2.修改了url不能正确识别的bug
+   3.重新整理了目录结构，所有的配置文件都放在src/config下，db表示数据库配置文件，system表示系统配置文件
+   4.重新定义了常量
+   5.修复了读取配置文件时，不能正确获取路径的bug
