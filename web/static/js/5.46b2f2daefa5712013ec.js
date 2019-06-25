@@ -1,0 +1,2 @@
+webpackJsonp([5],{VjiY:function(e,n,t){"use strict";Object.defineProperty(n,"__esModule",{value:!0});var s={render:function(){var e=this.$createElement;return(this._self._c||e)("div",[this._v("\n  "+this._s(this.msg)+"\n")])},staticRenderFns:[]},r=t("C7Lr")({name:"fileManage",data:function(){return{msg:"这是原件管理中心"}}},s,!1,null,null,null);n.default=r.exports}});
+//# sourceMappingURL=5.46b2f2daefa5712013ec.js.map

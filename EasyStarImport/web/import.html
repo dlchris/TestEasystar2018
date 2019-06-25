@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	  	<meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
+	  	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+      <link rel="stylesheet" type="text/css" href="layui/css/layui.css" />
+      <script type="text/javascript" src="js/jquery/jquery-1.12.4.min.js"></script>
+	    <script type="text/javascript" src="layui/layui.js" ></script>
+      <script type="text/javascript" src="js/common.js"></script>
+	    <style type="text/css">
+  		  .selectDemo {
+  		  	//清除select的边框样式
+          height: 100%;
+          width: 100%;
+          border: 0px solid #e6e6e6;
+          border-radius: 4px;
+          background: transparent;
+        }
+
+        .layui-table tbody tr:hover, .layui-table[lay-even] tbody tr:hover {
+        	background-color:dodgerblue;
+        }
+        
+        .layui-table th{
+					font-weight: bold;
+				}
+				
+				.myIcon {
+					position: absolute;
+					left: 400px;
+					top:10px;
+				}
+	    </style>
+  </head>
+  <body>
+		<div class="layui-container layui-form layui-form-pane" lay-filter="" style="width:540px; height: auto; margin: 0 auto; overflow-x: hidden;padding-top: 10px;">
+			<div class="layui-container" style="width:auto;margin: 0 auto;"><center>
+		  	<input type="hidden" id="classid" value="6B03843F2D74480F9826548F8F57B08A">
+  			<input type="hidden" id="classtype" value="0">
+  			<button type="button" class="layui-btn" id="btnUploadFile"><i class="layui-icon layui-icon-upload"></i>上传文件</button>
+  			<button onclick="startImport()" class="layui-btn layui-btn-danger"><i class="layui-icon layui-icon-ok-circle"></i>开始导入</button>
+  			</center>
+			</div>
+			<hr class="layui-bg-blue">
+		  <div class="layui-form-item">
+		    <label class="layui-form-label">主键</label>
+				<div class="layui-input-block">
+					<select id="selectKeyField" lay-verify="required" class="layui-form-select" lay-skin="primary" lay-filter="selectKeyField" >
+					</select>
+					<div class="myIcon">
+					 	<i class="layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop" style="font-size: 20px;display: none; color: #FF0000;" id="verifyIcon"></i>
+					</div>
+				</div>
+			</div>
+			<fieldset class="layui-field-title layui-elem-field">
+				<legend>设置字段对应关系</legend>
+			</fieldset>
+			<table id="tableFields" style="margin-top: -20px;width: 430;" class="layui-table" lay-filter="tableFields"></table>
+		</div>
+		
+		<div id="windowImportResult" style="width:360px;height:200px;display: none;">
+			<div class="layui-container layui-form-pane" style="width:320px;margin: 20px;">
+				<div class="layui-progress layui-progress-big" lay-showpercent="true" lay-filter="progress">
+				  <div class="layui-progress-bar layui-bg-red" lay-percent="0%"></div>
+				</div>
+				<hr class="layui-bg-blue">
+			  <div class="layui-form-item" panel>
+			    <label class="layui-form-label"><i class="layui-icon layui-icon-face-smile" style="font-size: 20px; color: #1E9FFF; font-weight: bold;"> </i>成功</label>
+					<div class="layui-input-block">
+						<div class="layui-form-label" style="width: 100%;" id="labelSuccessCount"></div>
+					</div>
+		    	<label class="layui-form-label"><i class="layui-icon layui-icon-face-cry" style="font-size: 20px; color: #FF0000; font-weight: bold;"> </i>失败</label>
+					<div class="layui-input-block">
+						<div class="layui-form-label" style="width: 100%;" id="labelFailureCount"></div>
+					</div>
+				</div>
+				<center>
+	  			<button type="button" class="layui-btn layui-btn-disabled" id="btnClose" disabled onclick="btnCloseClick()"><i class="layui-icon layui-icon-ok"></i>确定</button>
+	  			<button type="button" class="layui-btn layui-btn-warm layui-btn-disabled" id="btnShowLog" disabled onclick="btnShowLogClick()"><i class="layui-icon layui-icon-log"></i>日志</button>
+				</center>
+			</div>
+		</div>
+
+		<div id="windowLog" style="width:460px;height:200px;display: none;">
+			<div class="layui-container" style="width:410px; margin: 20px;">
+				<table class="layui-table" lay-filter="tableLog" id="tableLog"></table>
+			</div>
+		</div>
+		<script type="text/html" id="selecttpl">
+	    <select lay-filter="selDome" class="selectDemo" lay-ignore onchange="selectDome(this)">
+	    	<option value="{{d.LAY_TABLE_INDEX}}"></option>
+	    	{{#  layui.each(sourceFields, function(index, item){ }}
+	      <option value="{{d.LAY_TABLE_INDEX}}" {{# if (d.DISSTR == item) { targetFields[d.LAY_TABLE_INDEX].targetfield=item}} selected {{# }}}>{{item}}</option>
+	      {{#  }); }}
+	    </select>
+		</script>
+  </body>
+</html>

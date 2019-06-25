@@ -1,0 +1,2 @@
+webpackJsonp([2],{EM60:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r={render:function(){this.$createElement;this._self._c;return this._m(0)},staticRenderFns:[function(){var e=this.$createElement,t=this._self._c||e;return t("div",[t("h1",[this._v("首页")])])}]};var i=n("VU/8")({name:"ArchiveHome",data:function(){return{}}},r,!1,function(e){n("HPZP")},"data-v-0ed9f2a4",null);t.default=i.exports},HPZP:function(e,t){}});
+//# sourceMappingURL=2.bdb81c8113537cc8a7ba.js.map

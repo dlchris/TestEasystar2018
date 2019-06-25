@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   		<meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1">
+  		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+     <link rel="stylesheet" type="text/css" href="layui/css/layui.css" />
+      <script type="text/javascript" src="js/jquery/jquery-1.12.4.min.js"></script>
+	    <script type="text/javascript" src="layui/layui.js" ></script>
+      <script type="text/javascript" src="js/common.js"></script>
+	    <style type="text/css">
+  		  .selectDemo {
+            height: 100%;
+            width: 100%;
+            border: 0px solid #e6e6e6;
+            border-radius: 4px;
+            background: transparent;
+        }
+	    </style>
+  </head>
+  <body>
+      <input type="file" title="浏览" name="file1" id="file1"/>
+      <input type="hidden" id="classid" value="6B03843F2D74480F9826548F8F57B08A">
+      <input type="hidden" id="classtype" value="0">
+      <button onclick="importXls()">开始上传(ajax)</button>
+      <button onclick="startImport()">开始导入</button>
+      
+			<table id="tableFields" lay-filter="tableFields"></table>
+		
+			<script type="text/html" id="radioTpl">
+  			<input type="radio" name="keyRadio" value="{{d.LAY_TABLE_INDEX}}" title=" " lay-filter="radiodemo" {{d.FIELDNAME==keyFieldName?"checked":""}}>
+			</script>
+			<script type="text/html" id="selecttpl">
+		    <select lay-filter="selDome" class="selectDemo" lay-ignore onchange="selectDome(this)">
+		    	<option value="{{d.LAY_TABLE_INDEX}}"></option>
+		    	{{#  layui.each(sourceFields, function(index, item){ }}
+		      <option value="{{d.LAY_TABLE_INDEX}}" {{# if (d.DISSTR == item) { targetFields[d.LAY_TABLE_INDEX].targetfield=item}} selected {{# }}}>{{item}}</option>
+		      {{#  }); }}
+		    </select>
+			</script>
+  </body>
+</html>
